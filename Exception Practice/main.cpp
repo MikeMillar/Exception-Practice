@@ -1,41 +1,42 @@
 #include <iostream>
 using namespace std;
 
-void mightGoWrong() {
-	bool error1 = false;
-	bool error2 = true;
+void thisWillGoWrong() {
+	bool err1 = false;
+	bool err2 = false;
+	bool err3 = true;
 
-	if (error1) {
-		throw "Something went wrong.";
+	if (err1) {
+		throw 1;
 	}
-	if (error2) {
-		throw string("Something else went wrong.");
+	if (err2) {
+		throw "Something is wrong.";
+	}
+	if (err3) {
+		throw string("Something definetely went wrong");
 	}
 }
 
-void useMightGoWrong() {
-	mightGoWrong();
+void useThisWillGoWrong() {
+	thisWillGoWrong();
 }
-
 
 int main() {
 
 	try {
-		useMightGoWrong();
+		thisWillGoWrong();
 	}
 	catch (int e) {
-		cout << "Error code: " << e << endl;
+		cout << "Error occured: " << e << endl;
 	}
-	catch (char const* e) {
-		cout << "Error message: " << e << endl;
+	catch (const char* e) {
+		cout << "Const char pointer error: " << e << endl;
 	}
 	catch (string e) {
-		cout << "String error message: " << e << endl;
+		cout << "String error: " << e << endl;
 	}
 
 	cout << "Still running." << endl;
-
-
 
 
 	return 0;
